@@ -36,14 +36,17 @@ const works = {
         }
     ]
     ,
-    "Full Time": [
+        "Full Time": [
         {
             image: crest,
             name: "Crest Data",
-            duration: "Upcoming",
+            duration: "July 2024 - Present",
             position: "Site Reliability Engineer",
             location: "Ahmedabad, Gujarat",
             description: [
+                "Oversaw site reliability with PagerDuty alerts, 24/7 monitoring, and robust security utilizing Nessus, Nagios, and Tenable",
+                "Automated operations with PowerShell scripting, Jenkins pipelines, and optimized AWS infrastructure",
+                "Led seamless deployments across Dev, QA, and Production environments, ensuring FedRAMP compliance and operational excellence"
             ]
         }
     ]
