@@ -36,7 +36,7 @@ const works = {
         }
     ]
     ,
-        "Full Time": [
+    "Full Time": [
         {
             image: crest,
             name: "Crest Data",
