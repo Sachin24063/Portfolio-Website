@@ -21,7 +21,7 @@ const degrees = [
     },
     {
         image: skpatel,
-        name: "Sankalchand Patel University",
+        name: "Sankalchand Patel University Affiliated With GTU",
         duration: "2018 - 2021",
         degree: "Diploma In Computer Engineering",
         score: "8.98 / 10.0",
