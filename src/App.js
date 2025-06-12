@@ -11,6 +11,7 @@ import Experience from "./pages/Experience"
 import Projects from "./pages/Projects"
 import Certifications from "./pages/Certifications";
 import ContactMe from "./pages/ContactMe";
+import Publications from "./pages/Publications";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/certifications" element={<Certifications />} />
         <Route exact path="/contactme" element={<ContactMe />} />
+        <Route exact path="/publications" element={<Publications />} />
       </Routes>
     </Router>
   );

@@ -23,7 +23,7 @@ export default function SocialMedia() {
         </Link>
       </HStack>
 
-      <Link href='https://github.com/Sachin24063/Prtfolio-Website' isExternal>
+      <Link href='https://github.com/Sachin24063/Portfolio-Website' isExternal>
         <Button mt={3} p={6} bg="blue.900" border="2px" borderRadius="lg" _hover={{ bg: "transparent", borderColor: "blue.900", textColor: "blue.900" }} fontFamily="workSans" fontSize={["lg", "lg", "xl"]} textColor="white">
           <HStack spacing={2}>
             <Star />
