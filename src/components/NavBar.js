@@ -88,7 +88,8 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/education">Education</MenuItem>
         <MenuItem to="/experience">Experience</MenuItem>
         <MenuItem to="/projects">Projects</MenuItem>
-        <MenuItem to="/certifications">Certifications</MenuItem>
+        <MenuItem to="/publications">Publications</MenuItem>
+        {/* <MenuItem to="/certifications">Certifications</MenuItem> */}
         <MenuItem to="/contactme">Contact Me</MenuItem>
       </Stack>
     </Box>

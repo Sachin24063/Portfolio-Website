@@ -93,6 +93,9 @@ export default function Skills() {
             {degrees.map((degree, index) => (
                 <DegreeComponent key={index} degree={degree} />
             ))}
+            <Text fontFamily="paytone" fontSize={["2xl", "2xl", "3xl", "4xl"]} color="blue.900">
+                Certificates
+            </Text>
         </VStack>
     )
 }
