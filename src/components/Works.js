@@ -1,127 +1,323 @@
-import { Stack, Box, Center, Text, Image, List, ListItem, ListIcon, Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from '@chakra-ui/react'
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
-import crest from '../static/images/crest.png'
-import sparks from '../static/images/sparks.png'
+import React from "react";
+import {
+  Box,
+  Container,
+  VStack,
+  HStack,
+  Text,
+  Badge,
+  List,
+  ListItem,
+  ListIcon,
+  Image,
+} from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faServer,
+  faRobot,
+} from "@fortawesome/free-solid-svg-icons";
+import crestLogo from "../static/images/crest.png";
+import sparksLogo from "../static/images/sparks.png";
 
-const works = {
-    "Internship": [
-        {
-            image: crest,
-            name: "Crest Data",
-            duration: "Jan 2024 - June 2024",
-            position: "Site Reliability Engineer Intern",
-            location: "Ahmedabad, Gujarat",
-            description: [
-                "Implemented automated testing processes within CI/CD pipelines to ensure software quality and reliability",
-                "Streamlined deployments with Terraform and Jenkins, enhancing efficiency",
-                "Utilized Linux systems for server management and automation tasks",
-                "Utilized Site24x7 for monitoring and PagerDuty for incident response, minimizing downtime",
-                "Managed CI/CD pipelines with GitLab and optimized Windows server management using PowerShell scripting",
-            ]
-        },
-        {
-            image: sparks,
-            name: "Sparks To Ideas",
-            duration: "June 2023 - Jul 2023",
-            position: "Machine Learning Engineer Intern",
-            location: "Ahmedabad, Gujarat",
-            description: [
-                "Gained extensive hands-on experience in Python, OpenCV, TensorFlow, CNN, scikit-learn, and image dataset cleaning, building a solid foundation in machine learning and computer vision",
-                "Applied theoretical knowledge to practical ML projects, delivering impactful solutions",
-                "Actively contributed to team efforts, enhancing project outcomes",
-                "Played a key role in various ML projects, demonstrating strong technical skills and a proactive approach"
-            ]
-        }
-    ]
-    ,
-    "Full Time": [
-        {
-            image: crest,
-            name: "Crest Data",
-            duration: "July 2024 - Present",
-            position: "Site Reliability Engineer",
-            location: "Ahmedabad, Gujarat",
-            description: [
-                "Oversaw site reliability with PagerDuty alerts, 24/7 monitoring, and robust security utilizing Nessus, Nagios, and Tenable",
-                "Automated operations with PowerShell scripting, Jenkins pipelines, and optimized AWS infrastructure",
-                "Led seamless deployments across Dev, QA, and Production environments, ensuring FedRAMP compliance and operational excellence"
-            ]
-        }
-    ]
-}
-
-const WorkComponent = ({ work }) => {
-    return (
-        <Box w="100%" px={2} py={5}>
-            <Stack shadow="xl" rounded="xl" p={4} direction={['column', 'column', 'row']} spacing={5} w="100%">
-                <Center w={["100%", "100%", "40%", "30%"]}>
-                    <Image src={work.image} alt={work.name} w={["60%", "60%", "90%", "80%"]} h="auto" />
-                </Center>
-
-                <Stack spacing={4} w={["100%", "100%", "60%", "70%"]} >
-
-                    <Stack direction={['column', 'column', 'column', 'row']} spacing={2} bg="blue.900" textColor="white" w="100%" px={5} py={2} rounded="lg">
-                        <Stack w={["100%", "100%", "100%", "50%"]} direction="column">
-                            <Text fontFamily="paytone" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "left"]}>{work.name}</Text>
-
-                            <Text fontWeight="bold" fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "left"]}>{work.position}</Text>
-                        </Stack>
-
-                        <Stack w={["100%", "100%", "100%", "50%"]} direction="column">
-                            <Text fontFamily="paytone" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "right"]}>{work.duration}</Text>
-
-                            <Text fontWeight="bold" fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "right"]}>{work.location}</Text>
-                        </Stack>
-                    </Stack>
-
-                    <List fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} color="blue.900" spacing={2}>
-                        {work.description.map((desc) => (
-                            <ListItem key={desc}>
-                                <ListIcon as={FontAwesomeIcon} icon={faPencil} />
-                                {desc}
-                            </ListItem>
-                        ))}
-                    </List>
-                </Stack>
-            </Stack >
-        </Box >
-    )
-}
-
-const WorkAccordion = ({ workType, work }) => {
-    return (
-        <Accordion allowToggle mb={8}>
-            <AccordionItem rounded="xl">
-                <AccordionButton rounded="xl" p={5} border="2px" borderColor="blue.900" color="blue.900" _hover={{ bg: 'blue.900', color: 'white' }} _expanded={{ bg: 'blue.900', color: 'white', roundedBottom: '0px' }}>
-                    <Box as="span" flex='1' textAlign='left'>
-                        <Text fontFamily="paytone" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "left"]}>
-                            {workType}
-                        </Text>
-                    </Box>
-                    <AccordionIcon w={8} h={8} />
-                </AccordionButton>
-                <AccordionPanel roundedBottom="xl" border="2px" borderColor="blue.900">
-                    {
-                        work.map((w, index) => (
-                            <WorkComponent key={index} work={w} />
-                        ))
-                    }
-                </AccordionPanel>
-            </AccordionItem>
-        </Accordion>
-    )
-}
+const EXPERIENCES = [
+  {
+    company: "Crest Data Systems",
+    role: "DevOps Engineer (E3)",
+    duration: "July 2024 – Present",
+    location: "Ahmedabad, Gujarat, India",
+    type: "Full-Time",
+    logo: crestLogo,
+    badgeColor: "blue",
+    highlightBadge: "SME for Observability & Monitoring",
+    summary:
+      "Driving platform reliability and intelligent automation as a Platform Engineering - Site Reliability Engineer (PESRE). Architected Kubernetes infrastructure, large-scale observability, and pioneering AI-driven SRE systems.",
+    projects: [
+      {
+        name: "Project 1: PLBaaS (Polaris Load Balancer as a Service)",
+        icon: faServer,
+        color: "#2563EB",
+        roleTag: "Platform Engineering - Site Reliability Engineer (PESRE)",
+        points: [
+          "Architected and deployed Kubernetes-based microservices with dynamic, user-facing production interfaces.",
+          "Rolled out comprehensive monitoring dashboards using Grafana, delivering real-time telemetry into 100+ microservices across production environments.",
+          "Led code reviews and sprint planning for the DevOps team, ensuring delivery of clean, maintainable, and scalable infrastructure code.",
+          "Handled weekly on-call rotations responding to critical production incidents, maintaining zero downtime across key microservices through rapid troubleshooting and automated remediation.",
+          "Recognized as SME (Subject Matter Expert) for Observability & Monitoring, mentoring 5+ new engineers on best practices with Icinga, Prometheus, Grafana, and alert tuning strategies.",
+        ],
+        tags: ["Kubernetes", "Grafana", "Prometheus", "Icinga", "AWS", "Microservices", "On-Call SRE"],
+      },
+      {
+        name: "Project 2: AISRE (AI-Powered Site Reliability Engineering)",
+        icon: faRobot,
+        color: "#7C3AED",
+        roleTag: "AI SRE & LLM Automation Architect",
+        points: [
+          "Built AI-driven SRE assistant combining DevOps automation with LLM capabilities to reduce incident diagnosis time and enable natural language infrastructure queries.",
+          "Designed and implemented internal Model Context Protocol (MCP) servers enabling LLM-based automated incident analysis and real-time SRE support.",
+          "Integrated LLM workflows to auto-generate Incident RCA reports, summarize complex distributed logs, and recommend fixes using natural language prompts, reducing manual analysis time from hours to minutes.",
+          "Built intelligent chatbot features to fetch graphs, traces, and plots directly from Grafana/ElasticSearch, eliminating manual dashboard navigation.",
+          "Leveraged FAISS vector database, OpenAI APIs, and SBERT embeddings for contextual retrieval during critical incidents.",
+        ],
+        tags: ["Model Context Protocol (MCP)", "LangChain", "OpenAI APIs", "FAISS", "SBERT", "ElasticSearch", "Automated RCA"],
+      },
+    ],
+  },
+  {
+    company: "Crest Data Systems",
+    role: "Site Reliability Engineer Intern",
+    duration: "January 2024 – June 2024",
+    location: "Ahmedabad, Gujarat, India",
+    type: "Internship",
+    logo: crestLogo,
+    badgeColor: "cyan",
+    highlightBadge: "Infrastructure Automation",
+    summary:
+      "Automated core cloud infrastructure provisioning and engineered reliable continuous integration & delivery pipelines.",
+    projects: [
+      {
+        name: "Cloud Infrastructure & CI/CD Pipelines",
+        icon: faServer,
+        color: "#0284C7",
+        points: [
+          "Automated AWS infrastructure provisioning and standardized Linux/Windows server configurations using Shell and PowerShell scripts.",
+          "Built production-grade CI/CD pipelines using Terraform + Jenkins with auto-scaling and load-balancing capabilities.",
+          "Created detailed runbooks and documentation for infrastructure deployments, significantly improving deployment reliability and reducing human errors.",
+          "Implemented monitoring solutions and alerting mechanisms for distributed systems.",
+        ],
+        tags: ["Terraform", "AWS", "Jenkins", "CI/CD", "Shell / PowerShell", "Linux Automation"],
+      },
+    ],
+  },
+  {
+    company: "Sparks To Ideas",
+    role: "Machine Learning Engineer Intern",
+    duration: "June 2023 – July 2023",
+    location: "Ahmedabad, Gujarat, India",
+    type: "Internship",
+    logo: sparksLogo,
+    badgeColor: "purple",
+    highlightBadge: "Computer Vision & Deep Learning",
+    summary:
+      "Trained high-accuracy convolutional neural networks and deployed production inference APIs.",
+    projects: [
+      {
+        name: "Deep Learning Model Optimization & Inference",
+        icon: faRobot,
+        color: "#E11D48",
+        points: [
+          "Trained and optimized ResNet-50 model for image classification, improving accuracy from 87% to 92% through hyperparameter tuning and data augmentation techniques.",
+          "Cleaned and preprocessed datasets using labelImg and custom Python scripts, processing 10K+ images and improving detection quality.",
+          "Integrated trained ML model into Flask API for live inference and web applications.",
+        ],
+        tags: ["Python", "ResNet-50", "TensorFlow", "OpenCV", "Flask", "Data Augmentation"],
+      },
+    ],
+  },
+];
 
 export default function Works() {
-    return (
-        <Box py={4} px={[5, 5, 8, 10]}>
-            {
-                Object.keys(works).map((workType, index) => (
-                    <WorkAccordion key={index} workType={workType} work={works[workType]} />
-                ))
-            }
-        </Box>
-    )
+  return (
+    <Box py={[8, 12]}>
+      <Container maxW="7xl" px={[4, 6, 8]}>
+        <VStack spacing={8} align="stretch">
+          {EXPERIENCES.map((exp, idx) => (
+            <Box
+              key={idx}
+              rounded="2xl"
+              bg="#FFFFFF"
+              border="1px solid"
+              borderColor="#E2E8F0"
+              p={[5, 6, 8]}
+              boxShadow="0 4px 20px -2px rgba(15, 23, 42, 0.05)"
+              transition="all 0.3s ease"
+              _hover={{
+                borderColor: exp.badgeColor === "blue" ? "#93C5FD" : "#DDD6FE",
+                boxShadow: "0 10px 30px -4px rgba(37, 99, 235, 0.1)",
+              }}
+            >
+              {/* Header: Company, Role & Duration */}
+              <HStack
+                spacing={4}
+                align="flex-start"
+                justify="space-between"
+                wrap="wrap"
+                borderBottom="1px solid"
+                borderColor="#F1F5F9"
+                pb={5}
+                mb={6}
+              >
+                <HStack spacing={4}>
+                  <Box
+                    w={["50px", "60px"]}
+                    h={["50px", "60px"]}
+                    rounded="xl"
+                    p={2}
+                    bg="#F8FAFC"
+                    border="1px solid"
+                    borderColor="#E2E8F0"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Image
+                      src={exp.logo}
+                      alt={exp.company}
+                      maxW="100%"
+                      maxH="100%"
+                      objectFit="contain"
+                    />
+                  </Box>
+
+                  <Box>
+                    <HStack spacing={2} wrap="wrap">
+                      <Text fontSize={["lg", "xl", "2xl"]} fontWeight="800" color="#0F172A">
+                        {exp.role}
+                      </Text>
+                      <Badge
+                        colorScheme={exp.badgeColor}
+                        rounded="md"
+                        px={2}
+                        py={0.5}
+                        fontSize="xs"
+                        fontFamily="mono"
+                      >
+                        {exp.type}
+                      </Badge>
+                    </HStack>
+
+                    <Text fontSize={["sm", "md"]} color="#2563EB" fontWeight="600">
+                      {exp.company} • {exp.location}
+                    </Text>
+                  </Box>
+                </HStack>
+
+                <VStack align={["flex-start", "flex-start", "flex-end"]} spacing={1} pt={[2, 2, 0]}>
+                  <Badge
+                    fontFamily="mono"
+                    fontSize="xs"
+                    px={3}
+                    py={1}
+                    rounded="lg"
+                    bg="rgba(37, 99, 235, 0.08)"
+                    color="#1D4ED8"
+                    border="1px solid #BFDBFE"
+                  >
+                    {exp.duration}
+                  </Badge>
+
+                  {exp.highlightBadge && (
+                    <Text fontSize="xs" fontWeight="700" color="#D97706" fontFamily="mono">
+                      ★ {exp.highlightBadge}
+                    </Text>
+                  )}
+                </VStack>
+              </HStack>
+
+              {/* Summary */}
+              <Text fontSize="sm" color="#475569" mb={6} lineHeight="1.6">
+                {exp.summary}
+              </Text>
+
+              {/* Projects Breakdown */}
+              <VStack spacing={6} align="stretch">
+                {exp.projects.map((proj, pIdx) => (
+                  <Box
+                    key={pIdx}
+                    p={[4, 5, 6]}
+                    rounded="xl"
+                    bg="#F8FAFC"
+                    border="1px solid"
+                    borderColor="#E2E8F0"
+                    transition="all 0.2s ease"
+                    _hover={{
+                      borderColor: proj.color,
+                      bg: "#FFFFFF",
+                      boxShadow: "0 4px 15px -2px rgba(15, 23, 42, 0.06)",
+                    }}
+                  >
+                    <HStack spacing={3} mb={3} wrap="wrap">
+                      <Box
+                        w="32px"
+                        h="32px"
+                        rounded="lg"
+                        bg={`${proj.color}15`}
+                        border="1px solid"
+                        borderColor={`${proj.color}35`}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        color={proj.color}
+                      >
+                        <FontAwesomeIcon icon={proj.icon} />
+                      </Box>
+                      <Text fontSize={["md", "lg"]} fontWeight="700" color="#0F172A">
+                        {proj.name}
+                      </Text>
+                      {proj.roleTag && (
+                        <Badge
+                          rounded="md"
+                          px={2}
+                          py={0.5}
+                          fontSize="10px"
+                          fontFamily="mono"
+                          colorScheme="blue"
+                          variant="subtle"
+                        >
+                          {proj.roleTag}
+                        </Badge>
+                      )}
+                    </HStack>
+
+                    {/* Bullet Points */}
+                    <List spacing={3} my={3}>
+                      {proj.points.map((pt, ptIdx) => (
+                        <ListItem
+                          key={ptIdx}
+                          fontSize={["xs", "sm"]}
+                          color="#334155"
+                          display="flex"
+                          alignItems="flex-start"
+                        >
+                          <ListIcon
+                            as={FontAwesomeIcon}
+                            icon={faCheckCircle}
+                            color={proj.color}
+                            mt="3px"
+                          />
+                          <Text as="span" lineHeight="1.6">
+                            {pt}
+                          </Text>
+                        </ListItem>
+                      ))}
+                    </List>
+
+                    {/* Tech Badges */}
+                    <HStack spacing={2} wrap="wrap" pt={3}>
+                      {proj.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          rounded="md"
+                          px={2}
+                          py={0.5}
+                          fontSize="10px"
+                          fontFamily="mono"
+                          bg="#FFFFFF"
+                          color="#475569"
+                          border="1px solid"
+                          borderColor="#CBD5E1"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </HStack>
+                  </Box>
+                ))}
+              </VStack>
+            </Box>
+          ))}
+        </VStack>
+      </Container>
+    </Box>
+  );
 }

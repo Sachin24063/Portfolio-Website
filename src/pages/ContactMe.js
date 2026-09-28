@@ -1,41 +1,86 @@
-import React from 'react'
-import { Link, Button, HStack, Box, Text } from '@chakra-ui/react'
-import TopSection from '../components/TopSection'
-import Contact from '../components/Contact'
-import Footer from '../components/Footer'
-import ScrollToTop from '../components/ScrollToTop'
-import contactme from '../static/images/contactme.png'
-import resume from '../static/documents/resume.pdf'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import React from "react";
+import {
+  Box,
+  VStack,
+  HStack,
+  Text,
+  Button,
+} from "@chakra-ui/react";
+import TopSection from "../components/TopSection";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
+import contactmeImg from "../static/images/contactme.png";
+import resumePdf from "../static/documents/resume.pdf";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-const About = () => {
-    return (
-        <>
-            <Text fontFamily="paytone" fontSize={["2xl", "2xl", "3xl", "4xl"]} color="blue.900">
-                Resume
-            </Text>
-            <Text mb={5} align="center" fontFamily="workSans" fontSize={["xl", "xl", "2xl", "3xl"]} color="blue.900">
-                Have a look at my resume. Feel free to reach out to me for any queries or suggestions
-            </Text>
-            <Link href={resume} download="Sachin Vaghari (Resume)" target="_blank">
-                <Button p={[3, 3, 5, 6]} bg="blue.900" border="2px" borderRadius="lg" _hover={{ bg: "transparent", borderColor: "blue.900", textColor: "blue.900" }} fontFamily="workSans" fontSize={["lg", "lg", "xl"]} textColor="white">
-                    <HStack spacing={2}>
-                        <Text>Resume</Text>
-                        <ExternalLinkIcon w={6} h={6} />
-                    </HStack>
-                </Button>
-            </Link>
-        </>
-    )
-}
+const ContactHero = () => {
+  return (
+    <VStack align={["center", "center", "flex-start"]} spacing={4} w="100%">
+      <HStack
+        px={3.5}
+        py={1.5}
+        rounded="full"
+        bg="rgba(37, 99, 235, 0.08)"
+        border="1px solid #BFDBFE"
+        spacing={2}
+      >
+        <Box w="8px" h="8px" rounded="full" bg="#2563EB" boxShadow="0 0 8px rgba(37, 99, 235, 0.6)" />
+        <Text fontFamily="mono" fontSize="xs" fontWeight="700" color="#1D4ED8">
+          LET'S BUILD SOMETHING RELIABLE
+        </Text>
+      </HStack>
+
+      <Text
+        fontSize={["3xl", "4xl", "5xl"]}
+        fontWeight="800"
+        letterSpacing="-0.02em"
+        color="#0F172A"
+        lineHeight="1.15"
+      >
+        Contact & Resume
+      </Text>
+
+      <Text fontSize={["sm", "md"]} color="#475569" maxW="600px" lineHeight="1.6">
+        Have an exciting engineering problem, infrastructure scaling challenge, or AI SRE opportunity?
+        Download my latest resume or send a message directly.
+      </Text>
+
+      <HStack spacing={3} pt={2}>
+        <Button
+          as="a"
+          href={resumePdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="md"
+          height="44px"
+          px={5}
+          rounded="xl"
+          bg="linear-gradient(135deg, #2563EB, #1D4ED8)"
+          color="white"
+          fontWeight="700"
+          fontSize="sm"
+          rightIcon={<ExternalLinkIcon />}
+          boxShadow="0 4px 15px -2px rgba(37, 99, 235, 0.35)"
+          _hover={{
+            bg: "linear-gradient(135deg, #1D4ED8, #1E40AF)",
+            transform: "translateY(-1px)",
+          }}
+        >
+          View / Download Resume (PDF)
+        </Button>
+      </HStack>
+    </VStack>
+  );
+};
 
 export default function ContactMe() {
-    return (
-        <Box as="body" bg="blue.50" pt={4}>
-            <TopSection content={<About />} image={contactme} />
-            <Contact />
-            <Footer />
-            <ScrollToTop />
-        </Box>
-    )
+  return (
+    <Box bg="#F8FAFC" color="#0F172A" minH="100vh" className="tech-grid-bg">
+      <TopSection content={<ContactHero />} image={contactmeImg} />
+      <Contact />
+      <Footer />
+      <ScrollToTop />
+    </Box>
+  );
 }

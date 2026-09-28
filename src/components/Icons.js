@@ -1,5 +1,4 @@
 import React from 'react';
-import { icons } from 'react-icons';
 
 // Social Media
 export function Github(props) {

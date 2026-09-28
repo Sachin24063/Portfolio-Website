@@ -1,101 +1,184 @@
-import { Stack, HStack, VStack, Box, Button, Center, Text, Image, Link, List, ListItem, ListIcon } from '@chakra-ui/react'
-import React from 'react'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
-import nirma from '../static/images/nirma.png'
-import skpatel from '../static/images/skpatel.png'
+import React from "react";
+import {
+  Box,
+  VStack,
+  HStack,
+  Text,
+  Badge,
+  Image,
+  Button,
+  List,
+  ListItem,
+  ListIcon,
+} from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faAward } from "@fortawesome/free-solid-svg-icons";
 
-const degrees = [
-    {
-        image: nirma,
-        name: "Nirma University",
-        duration: "2021 - 2024",
-        degree: "B.Tech in Computer Science",
-        score: "7.11 / 10.0",
-        description: [
-            "Course Work - Data Structures and Algorithms, Object Oriented Programming, Operating System, Compiler Construction, Database Management, Computer Networks, Operating System, Machine Learning, Deep Learning, Data Mining, Microservice Architecture",
-            "Submitted paper ”SVM and Wavelet Transformation-Based Face Recognition of Women Cricketers” to ARAB ICT CONFERENCE 2024"
-        ],
-        website: "https://www.nirmauni.ac.in/"
-    },
-    {
-        image: skpatel,
-        name: "Sankalchand Patel University Affiliated With GTU",
-        duration: "2018 - 2021",
-        degree: "Diploma In Computer Engineering",
-        score: "8.98 / 10.0",
-        description: [
-            "Course Work - Data Structures and Algorithms, Object Oriented Programming, Operating System, Computer Network & Security, Computer Maintanance & Troubleshooting",
-            "Overall Class Rank 2 in 5th Semester",
-            "Overall Collage Rank 7 in 6th Semester"
-        ],
-        website: "https://spu.ac.in"
-    }
-]
+import nirmaLogo from "../static/images/nirma.png";
+import skpatelLogo from "../static/images/skpatel.png";
 
-const DegreeComponent = ({ degree }) => {
-    return (
-        <Box w="100%" px={8} py={5}>
-            <Stack shadow="xl" rounded="xl" p={4} direction={['column', 'column', 'row']} spacing={5} w="100%">
-                <Center w={["100%", "100%", "40%", "30%"]}>
-                    <Image src={degree.image} alt={degree.name} w={["60%", "60%", "90%", "80%"]} h="auto" />
-                </Center>
+const DEGREES = [
+  {
+    institution: "Nirma University",
+    degree: "Bachelor of Technology in Computer Science",
+    duration: "October 2021 – June 2024",
+    location: "Ahmedabad, Gujarat, India",
+    score: "7.11 / 10.0 CGPA",
+    badgeColor: "blue",
+    logo: nirmaLogo,
+    website: "https://www.nirmauni.ac.in/",
+    highlights: [
+      "Core Coursework: Distributed Systems, Cloud Computing, Microservice Architecture, Data Structures & Algorithms, Operating Systems, Database Management Systems, Compiler Construction, Computer Networks, Machine Learning & Deep Learning.",
+      "Conducted research resulting in international paper publication 'FaceWave' at ICFEICT 2024 (Springer).",
+      "Actively led technical and algorithmic initiatives, participating in nationwide hackathons.",
+    ],
+  },
+  {
+    institution: "Sankalchand Patel University",
+    degree: "Diploma in Computer Engineering",
+    duration: "August 2018 – May 2021",
+    location: "Visnagar, Gujarat, India",
+    score: "8.98 / 10.0 CGPA",
+    badgeColor: "purple",
+    logo: skpatelLogo,
+    website: "https://spu.ac.in",
+    highlights: [
+      "Academics: Overall Class Rank 2 in 5th Semester & Overall College Rank 7 in 6th Semester.",
+      "Core Foundations: Object-Oriented Programming, Computer Networks & Network Security, Data Structures, Operating Systems.",
+      "Graduated with Distinction honors.",
+    ],
+  },
+];
 
-                <Stack spacing={4} w={["100%", "100%", "60%", "70%"]} >
+export default function Degrees() {
+  return (
+    <Box py={[6, 8]}>
+      <VStack spacing={6} align="stretch">
+        {DEGREES.map((deg, idx) => (
+          <Box
+            key={idx}
+            p={[5, 6, 8]}
+            rounded="2xl"
+            bg="#FFFFFF"
+            border="1px solid"
+            borderColor="#E2E8F0"
+            boxShadow="0 4px 20px -2px rgba(15, 23, 42, 0.05)"
+            transition="all 0.3s ease"
+            _hover={{
+              borderColor: deg.badgeColor === "blue" ? "#93C5FD" : "#DDD6FE",
+              boxShadow: "0 10px 30px -4px rgba(37, 99, 235, 0.1)",
+            }}
+          >
+            <HStack
+              spacing={4}
+              align={["flex-start", "flex-start", "center"]}
+              justify="space-between"
+              wrap="wrap"
+              borderBottom="1px solid"
+              borderColor="#F1F5F9"
+              pb={4}
+              mb={4}
+            >
+              <HStack spacing={4}>
+                <Box
+                  w={["50px", "60px"]}
+                  h={["50px", "60px"]}
+                  rounded="xl"
+                  p={2}
+                  bg="#F8FAFC"
+                  border="1px solid"
+                  borderColor="#E2E8F0"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Image
+                    src={deg.logo}
+                    alt={deg.institution}
+                    maxW="100%"
+                    maxH="100%"
+                    objectFit="contain"
+                  />
+                </Box>
 
-                    <Stack direction={['column', 'column', 'column', 'row']} spacing={2} bg="blue.900" textColor="white" w="100%" px={5} py={2} rounded="lg">
-                        <Stack w={["100%", "100%", "100%", "70%"]} direction="column">
-                            <Text fontFamily="paytone" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "left"]}>{degree.name}</Text>
+                <Box>
+                  <Text fontSize={["lg", "xl"]} fontWeight="800" color="#0F172A">
+                    {deg.institution}
+                  </Text>
+                  <Text fontSize={["sm", "md"]} fontWeight="600" color="#2563EB">
+                    {deg.degree}
+                  </Text>
+                  <Text fontSize="xs" color="#64748B">
+                    {deg.location}
+                  </Text>
+                </Box>
+              </HStack>
 
-                            <Text fontWeight="bold" fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} align={["center", "center", "center", "left"]}>{degree.degree}</Text>
-                        </Stack>
+              <VStack align={["flex-start", "flex-start", "flex-end"]} spacing={1}>
+                <Badge
+                  colorScheme={deg.badgeColor}
+                  rounded="md"
+                  px={2.5}
+                  py={0.5}
+                  fontSize="xs"
+                  fontFamily="mono"
+                >
+                  {deg.duration}
+                </Badge>
+                <HStack spacing={1.5} color="#D97706" fontSize="xs" fontFamily="mono" fontWeight="700">
+                  <FontAwesomeIcon icon={faAward} />
+                  <Text>{deg.score}</Text>
+                </HStack>
+              </VStack>
+            </HStack>
 
-                        <Stack w={["100%", "100%", "100%", "30%"]} direction={['row', 'row', 'row', 'column']}>
-                            <Text fontWeight="bold" fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} w={["50%", "50%", "50%", "100%"]} align={["left", "left", "left", "right"]}>{degree.duration}</Text>
+            <List spacing={2} my={3}>
+              {deg.highlights.map((h, hIdx) => (
+                <ListItem
+                  key={hIdx}
+                  fontSize="xs"
+                  color="#334155"
+                  display="flex"
+                  alignItems="flex-start"
+                  lineHeight="1.6"
+                >
+                  <ListIcon
+                    as={FontAwesomeIcon}
+                    icon={faCheckCircle}
+                    color="#2563EB"
+                    mt="3px"
+                  />
+                  <Text as="span">{h}</Text>
+                </ListItem>
+              ))}
+            </List>
 
-                            <Text fontWeight="bold" fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} w={["50%", "50%", "50%", "100%"]} align="right">{degree.score}</Text>
-                        </Stack>
-                    </Stack>
-
-                    <List fontFamily="workSans" fontSize={["lg", "lg", "xl", "2xl"]} color="blue.900" spacing={2}>
-                        {degree.description.map((desc) => (
-                            <ListItem key={desc}>
-                                <ListIcon as={FontAwesomeIcon} icon={faPencil} />
-                                {desc}
-                            </ListItem>
-                        ))}
-                    </List>
-
-                    <Box w="100%" align="right">
-                        <Link href={degree.website} isExternal>
-                            <Button p={[3, 3, 5, 6]} bg="blue.900" border="2px" borderRadius="lg" _hover={{ bg: "transparent", borderColor: "blue.900", textColor: "blue.900" }} fontFamily="workSans" fontSize={["lg", "lg", "xl"]} textColor="white">
-                                <HStack>
-                                    <Text>Visit Website</Text>
-                                    <ExternalLinkIcon w={6} h={6} />
-                                </HStack>
-                            </Button>
-                        </Link>
-                    </Box>
-                </Stack>
-            </Stack >
-        </Box >
-    )
-}
-
-export default function Skills() {
-    return (
-        <VStack spacing={0}>
-            <Text fontFamily="paytone" fontSize={["2xl", "2xl", "3xl", "4xl"]} color="blue.900">
-                Educational Qualifications
-            </Text>
-
-            {degrees.map((degree, index) => (
-                <DegreeComponent key={index} degree={degree} />
-            ))}
-            <Text fontFamily="paytone" fontSize={["2xl", "2xl", "3xl", "4xl"]} color="blue.900">
-                Certificates
-            </Text>
-        </VStack>
-    )
+            <HStack justify="flex-end" pt={2}>
+              <Button
+                as="a"
+                href={deg.website}
+                isExternal
+                size="xs"
+                height="32px"
+                px={3}
+                rounded="lg"
+                variant="outline"
+                borderColor="#CBD5E1"
+                color="#334155"
+                rightIcon={<ExternalLinkIcon />}
+                _hover={{
+                  borderColor: "#2563EB",
+                  color: "#2563EB",
+                  bg: "rgba(37, 99, 235, 0.06)",
+                }}
+              >
+                Visit Institution
+              </Button>
+            </HStack>
+          </Box>
+        ))}
+      </VStack>
+    </Box>
+  );
 }
